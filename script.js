@@ -95,29 +95,49 @@ window.addEventListener('load', () => {
     let attempts = 3;
     attemptsDisplay.innerText = attempts;
 
-    // MOCK GLOBAL RECORD SYSTEM
-    // RESET RECORD (User Request)
-    localStorage.setItem('loveBarRecord', 0);
+    // REAL GLOBAL RECORD SYSTEM (JSONBlob)
+    // This allows syncing across devices without a complex backend.
+    const BLOB_ID = '1345466488219500544';
+    const API_URL = `https://jsonblob.com/api/jsonBlob/${BLOB_ID}`;
 
     // 1. Load local record
-    // 2. Fetch "global" record from JSON
+    // 2. Fetch global record from API
     // 3. Show the higher of the two
-    let localRecord = 0; // Since we just reset it
+    let localRecord = parseInt(localStorage.getItem('loveBarRecord')) || 0;
     let globalRecord = 0;
     let displayRecord = localRecord;
 
-    // Fetch mock global record
-    fetch('record.json')
-        .then(response => response.json())
-        .then(data => {
-            globalRecord = data.record || 0;
-            // If global record is higher than local, show it (simulate "someone else's" record)
-            if (globalRecord > localRecord) {
-                displayRecord = globalRecord;
-            }
-            updateRecordDisplay();
-        })
-        .catch(err => console.log('Record fetch error:', err));
+    // Fetch real global record
+    function fetchGlobalRecord() {
+        fetch(API_URL)
+            .then(response => response.json())
+            .then(data => {
+                globalRecord = data.record || 0;
+                if (globalRecord > localRecord) {
+                    displayRecord = globalRecord;
+                } else {
+                    displayRecord = localRecord;
+                }
+                updateRecordDisplay();
+            })
+            .catch(err => console.log('Record fetch error:', err));
+    }
+
+    // Update global record
+    function updateGlobalRecord(newScore) {
+        fetch(API_URL, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ record: newScore })
+        }).catch(err => console.log('Record update error:', err));
+    }
+
+    fetchGlobalRecord();
+    // Refresh record every 10 seconds to keep it updated
+    setInterval(fetchGlobalRecord, 10000);
 
     function updateRecordDisplay() {
         recordMarker.style.bottom = displayRecord + '%';
@@ -210,6 +230,12 @@ window.addEventListener('load', () => {
                 localRecord = score;
                 displayRecord = score;
                 localStorage.setItem('loveBarRecord', localRecord);
+
+                // Update Global Record if it's a true global high score
+                if (score > globalRecord) {
+                    updateGlobalRecord(score);
+                }
+
                 updateRecordDisplay();
 
                 messageDisplay.innerText = `Tebrikler! Yeni Rekor: ${score}% 🎉`;
