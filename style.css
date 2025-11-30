@@ -655,10 +655,10 @@ body {
     }
 
     /* Disable grass animations on mobile */
-    /* REMOVE GRASS COMPLETELY FOR STABILITY */
     .long-g,
+    .long-g .leaf,
     .flower__g-fr__leaf {
-        display: none !important;
+        animation: none !important;
     }
 
     /* Flower animations restored by removing the disable rules */

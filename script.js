@@ -101,10 +101,13 @@ window.addEventListener('load', () => {
     const BLOB_ID = '019ad62c-fab5-7a9a-8d90-c702da37beb1';
     const API_URL = `https://jsonblob.com/api/jsonBlob/${BLOB_ID}`;
 
+    // RESET RECORD (User Request)
+    localStorage.setItem('loveBarRecord', 0);
+
     // 1. Load local record
     // 2. Fetch global record from API
     // 3. Show the higher of the two
-    let localRecord = parseInt(localStorage.getItem('loveBarRecord')) || 0;
+    let localRecord = 0; // Reset
     let globalRecord = 0;
     let displayRecord = localRecord;
 
