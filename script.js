@@ -98,19 +98,19 @@ window.addEventListener('load', () => {
     function gameLoop() {
         if (!isPlaying) return;
 
-        // IMPOSSIBLE DIFFICULTY MODE
-        // Below 80%: Normal ramp up
-        // Above 80%: TELEPORT SPEED. Impossible to time.
+        // IMPOSSIBLE DIFFICULTY MODE (EXTREME)
+        // Below 70%: Normal ramp up
+        // Above 70%: TELEPORT SPEED. Impossible to time.
 
         let finalSpeed;
 
-        if (currentLevel > 80) {
-            // "Impossible" -> Moves 10% per frame! It's a blur.
-            finalSpeed = 10.0 + Math.random() * 5.0;
+        if (currentLevel > 70) {
+            // "Impossible" -> Moves 15% per frame! It's a blur.
+            finalSpeed = 15.0 + Math.random() * 5.0;
         } else {
-            // Progressive difficulty up to 80%
+            // Progressive difficulty up to 70%
             let baseSpeed = 0.5;
-            let ramp = (currentLevel / 80) * 2.0;
+            let ramp = (currentLevel / 70) * 2.0;
             finalSpeed = baseSpeed + ramp;
         }
 

@@ -583,21 +583,36 @@ body {
 
     /* Adjust Game UI for mobile */
     .game-container {
-        right: 2vmin;
+        right: 5vmin;
+        /* Give it more space from edge */
     }
 
     .game-title {
-        font-size: 4vmin;
+        font-size: 5vmin;
+        /* Larger title */
     }
 
-    .love-bar-wrapper {
-        width: 6vmin;
-        height: 50vmin;
+    .bar-holder {
+        width: 10vmin;
+        /* Wider bar */
+        height: 60vmin;
+        /* Taller bar */
+    }
+
+    .record-label {
+        right: 130%;
+        /* Move label further left to avoid overlap */
+        font-size: 3vmin;
+        /* Larger text */
     }
 
     .message-display {
+        font-size: 4vmin;
+        max-width: 30vmin;
+    }
+
+    .attempts-display {
         font-size: 3.5vmin;
-        max-width: 20vmin;
     }
 
     /* Adjust Moon */
