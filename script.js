@@ -96,10 +96,13 @@ window.addEventListener('load', () => {
     attemptsDisplay.innerText = attempts;
 
     // MOCK GLOBAL RECORD SYSTEM
+    // RESET RECORD (User Request)
+    localStorage.setItem('loveBarRecord', 0);
+
     // 1. Load local record
     // 2. Fetch "global" record from JSON
     // 3. Show the higher of the two
-    let localRecord = parseInt(localStorage.getItem('loveBarRecord')) || 0;
+    let localRecord = 0; // Since we just reset it
     let globalRecord = 0;
     let displayRecord = localRecord;
 
