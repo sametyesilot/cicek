@@ -588,46 +588,69 @@ body {
 
     /* Adjust Game UI for mobile */
     .game-container {
-        right: 5vmin;
-        /* Give it more space from edge */
-        top: 45%;
-        /* Move it slightly higher (default is 50%) */
+        right: auto;
+        /* Reset right positioning */
+        left: 50%;
+        /* Center horizontally */
+        top: 40%;
+        /* Move up slightly */
+        transform: translate(-50%, -50%);
+        /* Center perfectly */
+        background: rgba(0, 0, 0, 0.6);
+        /* Dark background for contrast */
+        padding: 3vmin;
+        border-radius: 3vmin;
+        backdrop-filter: blur(5px);
+        /* Blur background for readability */
+        width: 80vw;
+        /* Wide container */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 0 5vmin rgba(255, 105, 180, 0.3);
     }
 
     .game-title {
-        font-size: 5vmin;
-        /* Larger title */
+        font-size: 8vmin;
+        /* Huge title */
+        margin-bottom: 2vmin;
     }
 
     .bar-holder {
-        width: 10vmin;
-        /* Wider bar */
-        height: 60vmin;
+        width: 15vmin;
+        /* Much wider bar */
+        height: 50vmin;
         /* Taller bar */
+        margin: 2vmin 0;
     }
 
     .record-label {
-        right: 130%;
-        /* Move label further left to avoid overlap */
-        font-size: 3vmin;
-        /* Larger text */
+        right: 120%;
+        font-size: 4vmin;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 0.5vmin 1vmin;
+        border-radius: 1vmin;
     }
 
     .message-display {
-        font-size: 4vmin;
-        max-width: 30vmin;
+        font-size: 5vmin;
+        max-width: 100%;
+        margin-top: 2vmin;
     }
 
     .attempts-display {
-        font-size: 3.5vmin;
+        font-size: 5vmin;
+        margin-bottom: 2vmin;
     }
 
-    /* Adjust Moon */
+    /* Hide distracting elements on mobile if needed, or just push them back */
     .moon {
-        width: 15vmin;
-        height: 15vmin;
-        top: 3vmin;
-        right: 3vmin;
+        width: 12vmin;
+        height: 12vmin;
+        top: 2vmin;
+        right: 2vmin;
+        opacity: 0.8;
+        /* Fade it out a bit */
     }
 }
 

@@ -49,9 +49,6 @@ window.addEventListener('load', () => {
         }, 2000);
     }
 
-    // Erupt every 1.2 seconds
-    setInterval(createMoonEmoji, 1200);
-
     // Heart Shooting Stars
     function createHeartStar() {
         const star = document.createElement('div');
@@ -72,8 +69,13 @@ window.addEventListener('load', () => {
         }, 2500);
     }
 
-    // Create a heart star every few seconds
-    setInterval(createHeartStar, 2000);
+    // Only enable heavy animations on desktop
+    if (!isMobile) {
+        // Erupt every 1.2 seconds
+        setInterval(createMoonEmoji, 1200);
+        // Create a heart star every few seconds
+        setInterval(createHeartStar, 2000);
+    }
 
     // Love Bar Game Logic
     const loveBarFill = document.getElementById('love-bar-fill');
